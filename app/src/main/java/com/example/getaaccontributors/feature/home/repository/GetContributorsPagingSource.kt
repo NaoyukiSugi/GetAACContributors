@@ -12,12 +12,20 @@ class GetContributorsPagingSource(
     private val repoId: String
 ) : PagingSource<Int, UserList.User>() {
 
-    override fun getRefreshKey(state: PagingState<Int, UserList.User>): Int? {
-        TODO("Not yet implemented")
-    }
+    override fun getRefreshKey(state: PagingState<Int, UserList.User>): Int? = null
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserList.User> {
-        TODO("Not yet implemented")
+        return runCatching {
+            val page = params.key ?: 1
+            val userList = fetch(page)
+            LoadResult.Page(
+                data = userList,
+                prevKey = if (page > 1) page - 1 else null,
+                nextKey = if (userList.isNotEmpty()) page + 1 else null
+            )
+        }.getOrElse {
+            LoadResult.Error(it)
+        }
     }
 
     @VisibleForTesting
