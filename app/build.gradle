@@ -62,4 +62,7 @@ dependencies {
 
     // kotlin test
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_test_junit_version"
+
+    // CircleImageView
+    implementation "de.hdodenhof:circleimageview:$circle_image_view_version"
 }
