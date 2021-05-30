@@ -49,4 +49,17 @@ dependencies {
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // JUnit 5
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_version"
+
+    // mockito kotlin
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_kotlin_version"
+
+    // Paging
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // kotlin test
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_test_junit_version"
 }
