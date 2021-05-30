@@ -1,5 +1,6 @@
 package com.example.getaaccontributors.feature.home.repository
 
+import androidx.paging.PagingSource
 import com.example.getaaccontributors.api.github.GitHubService
 import com.example.getaaccontributors.model.UserList
 import kotlinx.coroutines.runBlocking
@@ -12,6 +13,7 @@ import org.mockito.kotlin.whenever
 import retrofit2.HttpException
 import retrofit2.Response
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 internal class GetContributorsPagingSourceTest {
@@ -25,6 +27,48 @@ internal class GetContributorsPagingSourceTest {
     fun setUp() {
         pagingSource = spy(GetContributorsPagingSource(service, repoId))
     }
+
+    @Test
+    fun `getRefreshKey should return null`() {
+        val result = pagingSource.getRefreshKey(mock())
+
+        assertNull(result)
+    }
+
+    // region load
+    @Test
+    fun `load should return LoadResult Page when response is successful`() {
+        runBlocking {
+            val userList: UserList = mock()
+            val apiResponse: Response<UserList> = mock {
+                on { isSuccessful } doReturn true
+                on { body() } doReturn userList
+            }
+            doReturn(apiResponse).whenever(service).getContributors(repoId, page)
+            val loadParams = PagingSource.LoadParams.Refresh(page, 1, true)
+            val loadResultPage = PagingSource.LoadResult.Page(userList, null, 2)
+
+            val result = pagingSource.load(loadParams)
+
+            assertEquals(loadResultPage, result)
+        }
+    }
+
+    @Test
+    fun `load should return LoadResult Error when response is not successful`() {
+        runBlocking {
+            val apiResponse: Response<UserList> = mock {
+                on { isSuccessful } doReturn false
+            }
+            doReturn(apiResponse).whenever(service).getContributors(repoId, page)
+            val loadParams = PagingSource.LoadParams.Refresh(page, 1, true)
+
+            val result = pagingSource.load(loadParams)
+
+            assertTrue(result is PagingSource.LoadResult.Error)
+        }
+    }
+    // endregion
 
     // region fetch
     @Test
