@@ -11,14 +11,14 @@ import com.example.getaaccontributors.model.UserList
 
 class HomeAdapter : PagingDataAdapter<UserList.User, HomeViewHolder>(DIFF_CALLBACK) {
 
-    var listener: HomeContract.UserClickListener? = null
+    var userClickListener: HomeContract.UserClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return createHomeViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        getUser(position)?.run { holder.bind(this, listener) }
+        getUser(position)?.run { holder.bind(this, userClickListener) }
     }
 
     @VisibleForTesting

@@ -20,4 +20,24 @@ interface HomeContract {
     interface UserClickListener {
         fun onUserClick(user: UserList.User)
     }
+
+    interface ViewProxy {
+        fun initAdapter(userClickListener: UserClickListener)
+        fun initRecyclerView()
+        suspend fun submitData(pagingUserData: PagingData<UserList.User>)
+        fun showRecyclerView()
+        fun hideRecyclerView()
+        fun showErrorView()
+        fun hideErrorView()
+        fun showEmptyView()
+        fun hideEmptyView()
+        fun showLoadingView()
+        fun hideLoadingView()
+        fun setOnRefreshListener(listener: RefreshListener)
+        fun navigateToDetail(user: UserList.User)
+    }
+
+    interface RefreshListener {
+        fun onRefresh()
+    }
 }
