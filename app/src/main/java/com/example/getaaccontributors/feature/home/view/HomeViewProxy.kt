@@ -99,6 +99,10 @@ class HomeViewProxy(private val fragment: Fragment) : HomeContract.ViewProxy {
         TODO("Not yet implemented")
     }
 
+    override fun addLoadStateListener(listener: HomeContract.LoadStateListener) {
+        homeAdapter.addLoadStateListener { listener.onLoadState(it) }
+    }
+
     @VisibleForTesting
     internal fun createHomeAdapter() = HomeAdapter()
 
