@@ -1,5 +1,6 @@
 package com.example.getaaccontributors.feature.home.contract
 
+import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
 import com.example.getaaccontributors.model.UserList
 import kotlinx.coroutines.flow.Flow
@@ -35,9 +36,18 @@ interface HomeContract {
         fun hideLoadingView()
         fun setOnRefreshListener(listener: RefreshListener)
         fun navigateToDetail(user: UserList.User)
+        fun addLoadStateListener(listener: LoadStateListener)
+    }
+
+    interface Presenter {
+        fun getContributors(repoId: String)
     }
 
     interface RefreshListener {
         fun onRefresh()
+    }
+
+    interface LoadStateListener {
+        fun onLoadState(loadState: CombinedLoadStates)
     }
 }
