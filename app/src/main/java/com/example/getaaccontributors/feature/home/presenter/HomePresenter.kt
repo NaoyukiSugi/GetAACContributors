@@ -10,6 +10,8 @@ import com.example.getaaccontributors.model.UserList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class HomePresenter(
     private val viewProxy: HomeContract.ViewProxy,
@@ -39,8 +41,12 @@ class HomePresenter(
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onLifecycleEventOnDestroy() = cancel()
 
-    override fun getContributors(repoId: String) {
-        TODO("Not yet implemented")
+    override fun getContributors() {
+        launch {
+            repository.getContributors(REPO_ID).collect {
+                viewProxy.submitData(it)
+            }
+        }
     }
 
     override fun onUserClick(user: UserList.User) {
@@ -53,5 +59,9 @@ class HomePresenter(
 
     override fun onLoadState(loadState: CombinedLoadStates) {
         TODO("Not yet implemented")
+    }
+
+    companion object {
+        private const val REPO_ID = "90792131"
     }
 }
