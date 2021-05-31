@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import com.example.getaaccontributors.feature.home.contract.HomeContract
 import com.example.getaaccontributors.model.UserList
 import kotlinx.coroutines.CoroutineScope
@@ -50,15 +51,40 @@ class HomePresenter(
     }
 
     override fun onUserClick(user: UserList.User) {
-        TODO("Not yet implemented")
+        viewProxy.navigateToDetail(user)
     }
 
     override fun onRefresh() {
-        TODO("Not yet implemented")
+        viewProxy.refresh()
     }
 
     override fun onLoadState(loadState: CombinedLoadStates) {
-        TODO("Not yet implemented")
+        when (loadState.refresh) {
+            is LoadState.NotLoading -> {
+                viewProxy.run {
+                    showRecyclerView()
+                    hideEmptyView()
+                    hideErrorView()
+                    hideLoadingView()
+                }
+            }
+            LoadState.Loading -> {
+                viewProxy.run {
+                    showLoadingView()
+                    hideRecyclerView()
+                    hideEmptyView()
+                    hideErrorView()
+                }
+            }
+            is LoadState.Error -> {
+                viewProxy.run {
+                    showErrorView()
+                    hideLoadingView()
+                    hideRecyclerView()
+                    hideEmptyView()
+                }
+            }
+        }
     }
 
     companion object {

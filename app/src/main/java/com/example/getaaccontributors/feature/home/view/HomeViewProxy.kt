@@ -103,6 +103,10 @@ class HomeViewProxy(private val fragment: Fragment) : HomeContract.ViewProxy {
         homeAdapter.addLoadStateListener { listener.onLoadState(it) }
     }
 
+    override fun refresh() {
+        homeAdapter.refresh()
+    }
+
     @VisibleForTesting
     internal fun createHomeAdapter() = HomeAdapter()
 

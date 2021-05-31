@@ -2,6 +2,8 @@ package com.example.getaaccontributors.feature.home.presenter
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.example.getaaccontributors.feature.home.contract.HomeContract
 import com.example.getaaccontributors.model.UserList
@@ -95,6 +97,66 @@ internal class HomePresenterTest {
             }
         }
     }
+
+    @Test
+    fun `onUserClick should call navigateToDetail`() {
+        val user: UserList.User = mock()
+
+        presenter.onUserClick(user)
+
+        verify(viewProxy).navigateToDetail(user)
+    }
+
+    @Test
+    fun `onRefresh should call refresh`() {
+        presenter.onRefresh()
+
+        viewProxy.refresh()
+    }
+
+    // region onLoadState
+    @Test
+    fun `onLoadState should only show recyclerView when LoadState is NotLoading`() {
+        val loadState: CombinedLoadStates = mock {
+            on { refresh } doReturn LoadState.NotLoading(false)
+        }
+
+        presenter.onLoadState(loadState)
+
+        verify(viewProxy).showRecyclerView()
+        verify(viewProxy).hideEmptyView()
+        verify(viewProxy).hideErrorView()
+        verify(viewProxy).hideLoadingView()
+    }
+
+    @Test
+    fun `onLoadState should only show loadingView when LoadState is Loading`() {
+        val loadState: CombinedLoadStates = mock {
+            on { refresh } doReturn LoadState.Loading
+        }
+
+        presenter.onLoadState(loadState)
+
+        verify(viewProxy).showLoadingView()
+        verify(viewProxy).hideRecyclerView()
+        verify(viewProxy).hideEmptyView()
+        verify(viewProxy).hideErrorView()
+    }
+
+    @Test
+    fun `onLoadState should only show errorView when LoadState is Error`() {
+        val loadState: CombinedLoadStates = mock {
+            on { refresh } doReturn LoadState.Error(mock())
+        }
+
+        presenter.onLoadState(loadState)
+
+        verify(viewProxy).showErrorView()
+        verify(viewProxy).hideLoadingView()
+        verify(viewProxy).hideRecyclerView()
+        verify(viewProxy).hideEmptyView()
+    }
+    // endregion
 
     companion object {
         private const val REPO_ID = "90792131"
