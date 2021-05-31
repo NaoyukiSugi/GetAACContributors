@@ -5,6 +5,7 @@ import android.widget.Button
 import androidx.core.view.isVisible
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.fragment.app.Fragment
+import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -168,6 +169,18 @@ internal class HomeViewProxyTest {
 
         verify(refreshListener, times(2)).onRefresh()
         verify(swipeRefreshLayout).isRefreshing = false
+    }
+
+    @Test
+    fun `addLoadStateListener should set listener into homeAdapter`() {
+        val loadStateListener: HomeContract.LoadStateListener = mock()
+        viewProxy.homeAdapter = adapter
+
+        viewProxy.addLoadStateListener(loadStateListener)
+
+        argumentCaptor<(CombinedLoadStates) -> Unit> {
+            verify(adapter).addLoadStateListener(capture())
+        }.firstValue
     }
 
     @Test
