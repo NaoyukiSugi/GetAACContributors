@@ -40,7 +40,7 @@ interface HomeContract {
     }
 
     interface Presenter {
-        fun getContributors(repoId: String)
+        fun getContributors()
     }
 
     interface RefreshListener {
