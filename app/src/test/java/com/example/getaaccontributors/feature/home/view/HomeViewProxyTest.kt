@@ -169,4 +169,13 @@ internal class HomeViewProxyTest {
         verify(refreshListener, times(2)).onRefresh()
         verify(swipeRefreshLayout).isRefreshing = false
     }
+
+    @Test
+    fun `refresh should call refresh`() {
+        viewProxy.homeAdapter = adapter
+
+        viewProxy.refresh()
+
+        verify(adapter).refresh()
+    }
 }

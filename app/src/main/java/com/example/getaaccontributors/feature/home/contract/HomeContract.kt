@@ -37,6 +37,7 @@ interface HomeContract {
         fun setOnRefreshListener(listener: RefreshListener)
         fun navigateToDetail(user: UserList.User)
         fun addLoadStateListener(listener: LoadStateListener)
+        fun refresh()
     }
 
     interface Presenter {
