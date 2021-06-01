@@ -15,7 +15,7 @@ interface GitHubService {
         @Query("page") page: Int
     ): Response<UserList>
 
-    @GET("users/{user_id}/repos")
+    @GET("users/{username}/repos")
     suspend fun getRepos(
         @Path("username") userName: String,
         @Query("page") page: Int

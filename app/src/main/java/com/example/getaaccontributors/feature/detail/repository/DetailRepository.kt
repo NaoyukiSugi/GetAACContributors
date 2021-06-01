@@ -8,8 +8,11 @@ import com.example.getaaccontributors.api.github.GitHubService
 import com.example.getaaccontributors.feature.detail.contract.DetailContract
 import com.example.getaaccontributors.model.RepoList
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class DetailRepository(private val service: GitHubService) : DetailContract.Repository {
+class DetailRepository @Inject constructor(
+    private val service: GitHubService
+) : DetailContract.Repository {
 
     override fun getRepos(userName: String): Flow<PagingData<RepoList.Repo>> =
         createPager(userName).flow

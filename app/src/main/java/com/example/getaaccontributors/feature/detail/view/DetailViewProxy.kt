@@ -13,8 +13,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.getaaccontributors.R
 import com.example.getaaccontributors.feature.detail.contract.DetailContract
 import com.example.getaaccontributors.model.RepoList
+import javax.inject.Inject
 
-class DetailViewProxy(private val fragment: Fragment) : DetailContract.ViewProxy {
+class DetailViewProxy @Inject constructor(
+    private val fragment: Fragment
+) : DetailContract.ViewProxy {
 
     @VisibleForTesting
     internal lateinit var detailAdapter: DetailAdapter
