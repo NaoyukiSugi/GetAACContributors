@@ -13,8 +13,9 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailPresenter(
+class DetailPresenter @Inject constructor(
     private val viewProxy: DetailContract.ViewProxy,
     private val repository: DetailContract.Repository,
     lifecycleOwner: LifecycleOwner
