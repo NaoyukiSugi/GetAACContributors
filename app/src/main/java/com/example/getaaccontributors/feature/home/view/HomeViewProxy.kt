@@ -6,6 +6,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.core.view.isVisible
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.getaaccontributors.R
 import com.example.getaaccontributors.feature.home.contract.HomeContract
 import com.example.getaaccontributors.model.UserList
+import com.example.getaaccontributors.util.navigateSafe
 import javax.inject.Inject
 
 class HomeViewProxy @Inject constructor(private val fragment: Fragment) : HomeContract.ViewProxy {
@@ -97,7 +99,11 @@ class HomeViewProxy @Inject constructor(private val fragment: Fragment) : HomeCo
     }
 
     override fun navigateToDetail(user: UserList.User) {
-        TODO("Not yet implemented")
+        fragment
+            .findNavController()
+            .navigateSafe(
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(user, user.login)
+            )
     }
 
     override fun addLoadStateListener(listener: HomeContract.LoadStateListener) {
