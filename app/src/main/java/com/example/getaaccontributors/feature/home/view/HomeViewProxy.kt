@@ -13,8 +13,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.getaaccontributors.R
 import com.example.getaaccontributors.feature.home.contract.HomeContract
 import com.example.getaaccontributors.model.UserList
+import javax.inject.Inject
 
-class HomeViewProxy(private val fragment: Fragment) : HomeContract.ViewProxy {
+class HomeViewProxy @Inject constructor(private val fragment: Fragment) : HomeContract.ViewProxy {
 
     @VisibleForTesting
     internal lateinit var homeAdapter: HomeAdapter
