@@ -19,11 +19,11 @@ interface DetailContract {
     }
 
     interface RepoClickListener {
-        fun onRepoClick(user: RepoList.Repo)
+        fun onRepoClick(repo: RepoList.Repo)
     }
 
     interface ViewProxy {
-        fun initAdapter(userClickListener: RepoClickListener)
+        fun initAdapter(repoClickListener: RepoClickListener)
         fun initRecyclerView()
         suspend fun submitData(pagingRepoData: PagingData<RepoList.Repo>)
         fun showRecyclerView()
@@ -35,7 +35,7 @@ interface DetailContract {
         fun showLoadingView()
         fun hideLoadingView()
         fun setOnRefreshListener(listener: RefreshListener)
-        fun addLoadStateListener(listener: DetailContract.LoadStateListener)
+        fun addLoadStateListener(listener: LoadStateListener)
         fun refresh()
     }
 
@@ -45,5 +45,9 @@ interface DetailContract {
 
     interface LoadStateListener {
         fun onLoadState(loadState: CombinedLoadStates)
+    }
+
+    interface Presenter {
+        fun getRepos(userName: String)
     }
 }

@@ -55,9 +55,9 @@ internal class DetailViewProxyTest {
     // region initAdapter
     @Test
     fun `initAdapter should set adapter into recyclerview`() {
-        val userClickListener: DetailContract.RepoClickListener = mock()
+        val repoClickListener: DetailContract.RepoClickListener = mock()
 
-        viewProxy.initAdapter(userClickListener)
+        viewProxy.initAdapter(repoClickListener)
 
         verify(recyclerView).adapter = adapter
     }
@@ -86,12 +86,12 @@ internal class DetailViewProxyTest {
     @Test
     fun `submitData should call submitData of adapter`() {
         runBlocking {
-            val pagingUserData: PagingData<RepoList.Repo> = mock()
+            val pagingRepoData: PagingData<RepoList.Repo> = mock()
             viewProxy.detailAdapter = adapter
 
-            viewProxy.submitData(pagingUserData)
+            viewProxy.submitData(pagingRepoData)
 
-            verify(adapter).submitData(pagingUserData)
+            verify(adapter).submitData(pagingRepoData)
         }
     }
 
