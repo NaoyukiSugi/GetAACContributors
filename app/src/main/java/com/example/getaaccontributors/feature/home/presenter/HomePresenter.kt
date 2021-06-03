@@ -60,7 +60,7 @@ class HomePresenter @Inject constructor(
     }
 
     override fun onLoadState(loadState: CombinedLoadStates) {
-        when (loadState.refresh) {
+        when (val refresh = loadState.refresh) {
             is LoadState.NotLoading -> {
                 viewProxy.run {
                     showRecyclerView()
@@ -83,6 +83,7 @@ class HomePresenter @Inject constructor(
                     hideLoadingView()
                     hideRecyclerView()
                     hideEmptyView()
+                    showErrorMessage(refresh.error)
                 }
             }
         }
