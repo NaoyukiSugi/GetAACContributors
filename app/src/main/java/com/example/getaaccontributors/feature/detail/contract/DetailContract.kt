@@ -37,6 +37,7 @@ interface DetailContract {
         fun setOnRefreshListener(listener: RefreshListener)
         fun addLoadStateListener(listener: LoadStateListener)
         fun refresh()
+        fun showErrorMessage(error: Throwable)
     }
 
     interface RefreshListener {

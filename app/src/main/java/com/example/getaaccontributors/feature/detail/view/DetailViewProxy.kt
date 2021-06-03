@@ -2,6 +2,7 @@ package com.example.getaaccontributors.feature.detail.view
 
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.VisibleForTesting
 import androidx.core.view.isVisible
 import androidx.core.widget.ContentLoadingProgressBar
@@ -105,6 +106,10 @@ class DetailViewProxy @Inject constructor(
 
     override fun refresh() {
         detailAdapter.refresh()
+    }
+
+    override fun showErrorMessage(error: Throwable) {
+        Toast.makeText(fragment.context, error.message, Toast.LENGTH_SHORT).show()
     }
 
     @VisibleForTesting

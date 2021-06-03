@@ -38,6 +38,7 @@ interface HomeContract {
         fun navigateToDetail(user: UserList.User)
         fun addLoadStateListener(listener: LoadStateListener)
         fun refresh()
+        fun showErrorMessage(error: Throwable)
     }
 
     interface Presenter {

@@ -137,8 +137,9 @@ internal class DetailPresenterTest {
 
     @Test
     fun `onLoadState should only show errorView when LoadState is Error`() {
+        val exception = Exception()
         val loadState: CombinedLoadStates = mock {
-            on { refresh } doReturn LoadState.Error(mock())
+            on { refresh } doReturn LoadState.Error(exception)
         }
 
         presenter.onLoadState(loadState)
@@ -147,6 +148,7 @@ internal class DetailPresenterTest {
         verify(viewProxy).hideLoadingView()
         verify(viewProxy).hideRecyclerView()
         verify(viewProxy).hideEmptyView()
+        verify(viewProxy).showErrorMessage(exception)
     }
     // endregion
 }

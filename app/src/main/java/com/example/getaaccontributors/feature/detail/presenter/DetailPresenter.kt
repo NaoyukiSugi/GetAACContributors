@@ -61,7 +61,7 @@ class DetailPresenter @Inject constructor(
     }
 
     override fun onLoadState(loadState: CombinedLoadStates) {
-        when (loadState.refresh) {
+        when (val refresh = loadState.refresh) {
             is LoadState.NotLoading -> {
                 viewProxy.run {
                     showRecyclerView()
@@ -84,6 +84,7 @@ class DetailPresenter @Inject constructor(
                     hideLoadingView()
                     hideRecyclerView()
                     hideEmptyView()
+                    showErrorMessage(refresh.error)
                 }
             }
         }

@@ -144,9 +144,10 @@ internal class HomePresenterTest {
     }
 
     @Test
-    fun `onLoadState should only show errorView when LoadState is Error`() {
+    fun `onLoadState should only show errorView and show error message when LoadState is Error`() {
+        val exception = Exception()
         val loadState: CombinedLoadStates = mock {
-            on { refresh } doReturn LoadState.Error(mock())
+            on { refresh } doReturn LoadState.Error(exception)
         }
 
         presenter.onLoadState(loadState)
@@ -155,6 +156,7 @@ internal class HomePresenterTest {
         verify(viewProxy).hideLoadingView()
         verify(viewProxy).hideRecyclerView()
         verify(viewProxy).hideEmptyView()
+        verify(viewProxy).showErrorMessage(exception)
     }
     // endregion
 
