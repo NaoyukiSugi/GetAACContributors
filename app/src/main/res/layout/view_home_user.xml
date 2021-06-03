@@ -24,21 +24,34 @@
         android:layout_marginEnd="@dimen/home_margin"
         android:ellipsize="end"
         android:maxLines="1"
-        app:layout_constraintBottom_toTopOf="@id/contributions"
+        app:layout_constraintBottom_toTopOf="@id/contributions_label"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/icon"
         app:layout_constraintTop_toTopOf="@id/icon"
         app:layout_constraintVertical_chainStyle="spread"
         tools:text="username" />
 
     <TextView
+        android:id="@+id/contributions_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/contributions"
+        android:text="@string/contributions_label"
+        app:layout_constraintBottom_toBottomOf="@id/icon"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintStart_toStartOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+    <TextView
         android:id="@+id/contributions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/icon"
-        app:layout_constraintEnd_toEndOf="@id/name"
-        app:layout_constraintStart_toStartOf="@id/name"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        tools:text="contributions" />
+        android:layout_marginStart="@dimen/home_margin"
+        android:layout_marginEnd="@dimen/home_margin"
+        app:layout_constraintBaseline_toBaselineOf="@id/contributions_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/contributions_label"
+        tools:text="100" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
