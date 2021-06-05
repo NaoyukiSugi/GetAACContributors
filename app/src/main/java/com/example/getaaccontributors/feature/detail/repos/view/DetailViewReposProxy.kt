@@ -42,11 +42,10 @@ class DetailViewReposProxy @Inject constructor(
         get() = fragment.view?.findViewById(R.id.progress_bar)
 
 
-    override fun initAdapter(repoClickListener: DetailReposContract.RepoClickListener) {
+    override fun initAdapter() {
         createDetailAdapter().run {
             detailAdapter = this
             recyclerView?.adapter = this
-            detailAdapter.repoClickListener = repoClickListener
         }
     }
 

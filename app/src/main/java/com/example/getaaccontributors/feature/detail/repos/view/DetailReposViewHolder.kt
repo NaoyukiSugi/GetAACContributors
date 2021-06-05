@@ -12,12 +12,11 @@ class DetailReposViewHolder(
     private val viewProxy: DetailReposContract.ViewHolderViewProxy = ViewProxy(view)
 ) : RecyclerView.ViewHolder(view) {
 
-    fun bind(repo: RepoList.Repo, listener: DetailReposContract.RepoClickListener?) {
+    fun bind(repo: RepoList.Repo) {
         viewProxy.run {
             setRepoName(repo.name)
             setLanguage(repo.language ?: DEFAULT_LANGUAGE_TEXT)
             setUpdatedDate(repo.updatedAt)
-            setOnRepoClickListener(repo, listener)
         }
     }
 
@@ -42,13 +41,6 @@ class DetailReposViewHolder(
 
         override fun setUpdatedDate(updatedDate: String) {
             updatedDateTv.text = updatedDate
-        }
-
-        override fun setOnRepoClickListener(
-            repo: RepoList.Repo,
-            listener: DetailReposContract.RepoClickListener?
-        ) {
-            view.setOnClickListener { listener?.onRepoClick(repo) }
         }
     }
 

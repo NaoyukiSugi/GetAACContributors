@@ -55,21 +55,9 @@ internal class DetailReposViewProxyTest {
     // region initAdapter
     @Test
     fun `initAdapter should set adapter into recyclerview`() {
-        val repoClickListener: DetailReposContract.RepoClickListener = mock()
-
-        viewProxy.initAdapter(repoClickListener)
+        viewProxy.initAdapter()
 
         verify(recyclerView).adapter = adapter
-    }
-
-    @Test
-    fun `initAdapter should set listener into adapter`() {
-        val listener: DetailReposContract.RepoClickListener = mock()
-        viewProxy.detailAdapter = adapter
-
-        viewProxy.initAdapter(listener)
-
-        verify(adapter).repoClickListener = listener
     }
     // endregion
 

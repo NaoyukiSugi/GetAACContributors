@@ -15,15 +15,10 @@ interface DetailReposContract {
         fun setRepoName(repoName: String)
         fun setLanguage(language: String)
         fun setUpdatedDate(updatedDate: String)
-        fun setOnRepoClickListener(repo: RepoList.Repo, listener: RepoClickListener?)
-    }
-
-    interface RepoClickListener {
-        fun onRepoClick(repo: RepoList.Repo)
     }
 
     interface ViewProxy {
-        fun initAdapter(repoClickListener: RepoClickListener)
+        fun initAdapter()
         fun initRecyclerView()
         suspend fun submitData(pagingRepoData: PagingData<RepoList.Repo>)
         fun showRecyclerView()

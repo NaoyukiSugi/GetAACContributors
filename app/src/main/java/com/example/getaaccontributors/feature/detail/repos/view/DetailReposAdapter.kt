@@ -11,14 +11,12 @@ import com.example.getaaccontributors.model.RepoList
 
 class DetailReposAdapter : PagingDataAdapter<RepoList.Repo, DetailReposViewHolder>(DIFF_CALLBACK) {
 
-    var repoClickListener: DetailReposContract.RepoClickListener? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailReposViewHolder {
         return createDetailViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: DetailReposViewHolder, position: Int) {
-        getRepo(position)?.run { holder.bind(this, repoClickListener) }
+        getRepo(position)?.run { holder.bind(this) }
     }
 
     @VisibleForTesting
