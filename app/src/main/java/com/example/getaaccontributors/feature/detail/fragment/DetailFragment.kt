@@ -5,13 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.getaaccontributors.R
 import com.example.getaaccontributors.feature.detail.profile.contract.DetailProfileContract
 import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -35,10 +33,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launch {
-            val userName = args.userName
-            profilePresenter.getUser(userName)
-            reposPresenter.getRepos(userName)
-        }
+        val userName = args.userName
+        profilePresenter.getUser(userName)
+        reposPresenter.getRepos(userName)
     }
 }

@@ -27,6 +27,6 @@ interface DetailProfileContract {
     }
 
     interface Presenter {
-        suspend fun getUser(userName: String)
+        fun getUser(userName: String)
     }
 }
