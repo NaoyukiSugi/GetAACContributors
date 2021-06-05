@@ -1,16 +1,25 @@
 package com.example.getaaccontributors.feature.detail.profile.presenter
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import com.example.getaaccontributors.feature.detail.profile.contract.DetailProfileContract
 import com.example.getaaccontributors.model.Future
 import com.example.getaaccontributors.model.UserList
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
+import kotlin.test.assertFalse
 
 internal class DetailProfilePresenterTest {
 
@@ -18,10 +27,27 @@ internal class DetailProfilePresenterTest {
 
     private val viewProxy: DetailProfileContract.ViewProxy = mock()
     private val repository: DetailProfileContract.Repository = mock()
+    private val lifecycle: Lifecycle = mock()
+    private val lifecycleOwner: LifecycleOwner = mock {
+        on { lifecycle } doReturn (lifecycle)
+    }
 
     @BeforeEach
     fun setUp() {
-        presenter = DetailProfilePresenter(viewProxy, repository)
+        Dispatchers.setMain(TestCoroutineDispatcher())
+        presenter = DetailProfilePresenter(viewProxy, repository, lifecycleOwner)
+    }
+
+    @AfterEach
+    fun tearDown() {
+        Dispatchers.resetMain()
+    }
+
+    @Test
+    fun `onLifecycleEventOnDestroy should call cancel`() {
+        presenter.onLifecycleEventOnDestroy()
+
+        assertFalse(presenter.isActive)
     }
 
     // region getUser
