@@ -19,4 +19,8 @@ interface DetailProfileContract {
         fun setBlog(blog: String)
         fun setTwitterUserName(twitterUserName: String)
     }
+
+    interface Presenter {
+        fun setUser(user: UserList.User)
+    }
 }
