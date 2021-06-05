@@ -1,7 +1,5 @@
 package com.example.getaaccontributors.feature.detail.repos.presenter
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -10,7 +8,6 @@ import com.example.getaaccontributors.model.RepoList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -23,22 +20,17 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.spy
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
-import kotlin.test.assertFalse
 
 internal class DetailReposPresenterTest {
 
     private lateinit var presenter: DetailReposPresenter
     private val viewProxy: DetailReposContract.ViewProxy = mock()
     private val repository: DetailReposContract.Repository = mock()
-    private val lifecycle: Lifecycle = mock()
-    private val lifecycleOwner: LifecycleOwner = mock {
-        on { lifecycle } doReturn (lifecycle)
-    }
 
     @BeforeEach
     fun setUp() {
         Dispatchers.setMain(TestCoroutineDispatcher())
-        presenter = spy(DetailReposPresenter(viewProxy, repository, lifecycleOwner))
+        presenter = spy(DetailReposPresenter(viewProxy, repository))
     }
 
     @AfterEach
@@ -46,41 +38,57 @@ internal class DetailReposPresenterTest {
         Dispatchers.resetMain()
     }
 
-    // region onLifecycleEventOnStart
+    // region getRepos
     @Test
-    fun `onLifecycleEventOnStart should call initAdapter`() {
-        presenter.onLifecycleEventOnStart()
+    fun `getRepos should call initAdapter`() {
+        runBlocking {
+            val userName = "userName"
+            val pagingDataFlow: Flow<PagingData<RepoList.Repo>> = mock()
+            doReturn(pagingDataFlow).whenever(repository).getRepos(userName)
 
-        verify(viewProxy).initAdapter()
+            presenter.getRepos(userName)
+
+            verify(viewProxy).initAdapter()
+        }
     }
 
     @Test
-    fun `onLifecycleEventOnStart should call initRecyclerView`() {
-        presenter.onLifecycleEventOnStart()
+    fun `getRepos should call initRecyclerView`() {
+        runBlocking {
+            val userName = "userName"
+            val pagingDataFlow: Flow<PagingData<RepoList.Repo>> = mock()
+            doReturn(pagingDataFlow).whenever(repository).getRepos(userName)
 
-        verify(viewProxy).initRecyclerView()
+            presenter.getRepos(userName)
+
+            verify(viewProxy).initRecyclerView()
+        }
     }
 
     @Test
-    fun `onLifecycleEventOnStart should call setOnRefreshListener`() {
-        presenter.onLifecycleEventOnStart()
+    fun `getRepos should call setOnRefreshListener`() {
+        runBlocking {
+            val userName = "userName"
+            val pagingDataFlow: Flow<PagingData<RepoList.Repo>> = mock()
+            doReturn(pagingDataFlow).whenever(repository).getRepos(userName)
 
-        verify(viewProxy).setOnRefreshListener(presenter)
+            presenter.getRepos(userName)
+
+            verify(viewProxy).setOnRefreshListener(presenter)
+        }
     }
 
     @Test
-    fun `onLifecycleEventOnStart should call addLoadStateListener`() {
-        presenter.onLifecycleEventOnStart()
+    fun `getRepos should call addLoadStateListener`() {
+        runBlocking {
+            val userName = "userName"
+            val pagingDataFlow: Flow<PagingData<RepoList.Repo>> = mock()
+            doReturn(pagingDataFlow).whenever(repository).getRepos(userName)
 
-        verify(viewProxy).addLoadStateListener(presenter)
-    }
-    // endregion
+            presenter.getRepos(userName)
 
-    @Test
-    fun `onLifecycleEventOnDestroy should call cancel`() {
-        presenter.onLifecycleEventOnDestroy()
-
-        assertFalse(presenter.isActive)
+            verify(viewProxy).addLoadStateListener(presenter)
+        }
     }
 
     @Test
@@ -98,6 +106,7 @@ internal class DetailReposPresenterTest {
             }
         }
     }
+    // endregion
 
     @Test
     fun `onRefresh should call refresh`() {
