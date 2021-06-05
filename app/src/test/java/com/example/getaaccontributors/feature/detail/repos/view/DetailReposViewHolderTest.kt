@@ -16,7 +16,6 @@ internal class DetailReposViewHolderTest {
     private val view: View = mock()
     private val viewProxy: DetailReposContract.ViewHolderViewProxy = mock()
     private val repo: RepoList.Repo = mock()
-    private val listener: DetailReposContract.RepoClickListener = mock()
 
     @BeforeEach
     fun setUp() {
@@ -28,7 +27,7 @@ internal class DetailReposViewHolderTest {
         val name = "name"
         doReturn(name).whenever(repo).name
 
-        viewHolder.bind(repo, listener)
+        viewHolder.bind(repo)
 
         verify(viewProxy).setRepoName(name)
     }
@@ -39,14 +38,14 @@ internal class DetailReposViewHolderTest {
         val language = "language"
         doReturn(language).whenever(repo).language
 
-        viewHolder.bind(repo, listener)
+        viewHolder.bind(repo)
 
         verify(viewProxy).setLanguage(language)
     }
 
     @Test
     fun `bind should call setLanguage when repo's language is null`() {
-        viewHolder.bind(repo, listener)
+        viewHolder.bind(repo)
 
         verify(viewProxy).setLanguage(DEFAULT_LANGUAGE_TEXT)
     }
@@ -57,16 +56,9 @@ internal class DetailReposViewHolderTest {
         val updatedAt = "updatedAt"
         doReturn(updatedAt).whenever(repo).updatedAt
 
-        viewHolder.bind(repo, listener)
+        viewHolder.bind(repo)
 
         verify(viewProxy).setUpdatedDate(updatedAt)
-    }
-
-    @Test
-    fun `bind should set RepoClickListener`() {
-        viewHolder.bind(repo, listener)
-
-        verify(viewProxy).setOnRepoClickListener(repo, listener)
     }
 
     companion object {

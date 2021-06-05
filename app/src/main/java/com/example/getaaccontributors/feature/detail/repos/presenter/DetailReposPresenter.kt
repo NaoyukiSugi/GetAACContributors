@@ -20,7 +20,6 @@ class DetailReposPresenter @Inject constructor(
     private val repository: DetailReposContract.Repository,
     lifecycleOwner: LifecycleOwner
 ) : DetailReposContract.Presenter,
-    DetailReposContract.RepoClickListener,
     DetailReposContract.RefreshListener,
     DetailReposContract.LoadStateListener,
     LifecycleObserver,
@@ -33,7 +32,7 @@ class DetailReposPresenter @Inject constructor(
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onLifecycleEventOnStart() {
         viewProxy.run {
-            initAdapter(this@DetailReposPresenter)
+            initAdapter()
             initRecyclerView()
             setOnRefreshListener(this@DetailReposPresenter)
             addLoadStateListener(this@DetailReposPresenter)
@@ -50,10 +49,6 @@ class DetailReposPresenter @Inject constructor(
                 viewProxy.submitData(it)
             }
         }
-    }
-
-    override fun onRepoClick(repo: RepoList.Repo) {
-        TODO("Not yet implemented")
     }
 
     override fun onRefresh() {

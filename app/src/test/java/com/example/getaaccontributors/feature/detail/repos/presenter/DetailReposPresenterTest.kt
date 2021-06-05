@@ -51,7 +51,7 @@ internal class DetailReposPresenterTest {
     fun `onLifecycleEventOnStart should call initAdapter`() {
         presenter.onLifecycleEventOnStart()
 
-        verify(viewProxy).initAdapter(presenter)
+        verify(viewProxy).initAdapter()
     }
 
     @Test
