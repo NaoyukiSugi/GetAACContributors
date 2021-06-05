@@ -4,8 +4,9 @@ import androidx.lifecycle.LifecycleObserver
 import com.example.getaaccontributors.feature.detail.profile.contract.DetailProfileContract
 import com.example.getaaccontributors.model.Future
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
-class DetailProfilePresenter(
+class DetailProfilePresenter @Inject constructor(
     private val viewProxy: DetailProfileContract.ViewProxy,
     private val repository: DetailProfileContract.Repository
 ) : DetailProfileContract.Presenter,

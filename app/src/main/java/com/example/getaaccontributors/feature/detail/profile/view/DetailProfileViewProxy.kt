@@ -11,12 +11,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.example.getaaccontributors.R
 import com.example.getaaccontributors.feature.detail.profile.contract.DetailProfileContract
+import javax.inject.Inject
 
 class DetailProfileViewProxy @VisibleForTesting internal constructor(
     private val fragment: Fragment,
     private val requestManager: RequestManager
 ) : DetailProfileContract.ViewProxy {
 
+    @Inject
     constructor(fragment: Fragment) : this(fragment, Glide.with(fragment))
 
     private val profileView: View?
