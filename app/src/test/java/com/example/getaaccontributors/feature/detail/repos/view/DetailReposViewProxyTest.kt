@@ -26,7 +26,7 @@ import org.mockito.kotlin.whenever
 
 internal class DetailReposViewProxyTest {
 
-    private lateinit var viewProxy: DetailViewReposProxy
+    private lateinit var viewProxy: DetailReposViewProxy
     private val recyclerView: RecyclerView = mock()
     private val errorView: View = mock()
     private val progressBar: ContentLoadingProgressBar = mock()
@@ -46,7 +46,7 @@ internal class DetailReposViewProxyTest {
 
     @BeforeEach
     fun setUp() {
-        viewProxy = spy(DetailViewReposProxy(fragment))
+        viewProxy = spy(DetailReposViewProxy(fragment))
         doReturn(adapter).whenever(viewProxy).createDetailAdapter()
     }
 
