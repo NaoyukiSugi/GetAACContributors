@@ -20,4 +20,9 @@ interface GitHubService {
         @Path("username") userName: String,
         @Query("page") page: Int
     ): Response<RepoList>
+
+    @GET("users/{username}")
+    suspend fun getUser(
+        @Path("username") userName: String
+    ): Response<UserList.User>
 }
