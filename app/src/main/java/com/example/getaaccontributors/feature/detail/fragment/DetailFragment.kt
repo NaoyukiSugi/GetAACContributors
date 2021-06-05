@@ -1,4 +1,4 @@
-package com.example.getaaccontributors.feature.detail.repos.view
+package com.example.getaaccontributors.feature.detail.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
