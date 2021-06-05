@@ -45,13 +45,13 @@ class UserList : ArrayList<UserList.User>() {
         @SerializedName("contributions")
         val contributions: Int,
         @SerializedName("name")
-        val name: String,
+        val name: String?,
         @SerializedName("company")
-        val company: String,
+        val company: String?,
         @SerializedName("blog")
-        val blog: String,
+        val blog: String?,
         @SerializedName("location")
-        val location: String,
+        val location: String?,
         @SerializedName("email")
         val email: Any?,
         @SerializedName("hireable")
@@ -59,7 +59,7 @@ class UserList : ArrayList<UserList.User>() {
         @SerializedName("bio")
         val bio: Any?,
         @SerializedName("twitter_username")
-        val twitterUsername: String,
+        val twitterUsername: String?,
         @SerializedName("public_repos")
         val publicRepos: Int,
         @SerializedName("public_gists")
