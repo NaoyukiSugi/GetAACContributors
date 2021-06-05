@@ -11,6 +11,12 @@ interface DetailProfileContract {
     }
 
     interface ViewProxy {
+        fun showProfileView()
+        fun hideProfileView()
+        fun showErrorView()
+        fun hideErrorView()
+        fun showLoadingView()
+        fun hideLoadingView()
         fun loadIconImage(imageUrl: String)
         fun setUserName(userName: String)
         fun setRealName(realName: String)

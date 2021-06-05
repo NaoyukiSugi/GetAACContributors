@@ -4,6 +4,8 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
+import androidx.core.widget.ContentLoadingProgressBar
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.RequestManager
@@ -20,6 +22,9 @@ internal class DetailProfileViewProxyTest {
 
     lateinit var viewProxy: DetailProfileViewProxy
 
+    private val profileView: View = mock()
+    private val progressBar: ContentLoadingProgressBar = mock()
+    private val errorView: View = mock()
     private val userIconIV: ImageView = mock()
     private val userNameTv: TextView = mock()
     private val realNameTv: TextView = mock()
@@ -28,7 +33,10 @@ internal class DetailProfileViewProxyTest {
     private val blogTv: TextView = mock()
     private val twitterUserNameTv: TextView = mock()
     private val view: View = mock {
-        on { findViewById<ImageView>(R.id.icon) } doReturn userIconIV
+        on { findViewById<View>(R.id.detail_profile_view) } doReturn profileView
+        on { findViewById<ContentLoadingProgressBar>(R.id.progress_bar) } doReturn progressBar
+        on { findViewById<View>(R.id.error_view) } doReturn errorView
+        on { findViewById<ImageView>(R.id.user_icon) } doReturn userIconIV
         on { findViewById<TextView>(R.id.user_name) } doReturn userNameTv
         on { findViewById<TextView>(R.id.real_name) } doReturn realNameTv
         on { findViewById<TextView>(R.id.location) } doReturn locationTv
@@ -44,6 +52,48 @@ internal class DetailProfileViewProxyTest {
     @BeforeEach
     fun setUp() {
         viewProxy = spy(DetailProfileViewProxy(fragment, requestManager))
+    }
+
+    @Test
+    fun `showProfileView should show profileView`() {
+        viewProxy.showProfileView()
+
+        verify(profileView).isVisible = true
+    }
+
+    @Test
+    fun `hideProfileView should hide profileView`() {
+        viewProxy.hideProfileView()
+
+        verify(profileView).isVisible = false
+    }
+
+    @Test
+    fun `showErrorView should show errorView`() {
+        viewProxy.showErrorView()
+
+        verify(errorView).isVisible = true
+    }
+
+    @Test
+    fun `hideErrorView should hide errorView`() {
+        viewProxy.hideErrorView()
+
+        verify(errorView).isVisible = false
+    }
+
+    @Test
+    fun `showLoadingView should show progressBar`() {
+        viewProxy.showLoadingView()
+
+        verify(progressBar).isVisible = true
+    }
+
+    @Test
+    fun `hideLoadingView should hide progressBar`() {
+        viewProxy.hideLoadingView()
+
+        verify(progressBar).isVisible = false
     }
 
     @Test
