@@ -9,7 +9,7 @@ import com.example.getaaccontributors.feature.detail.profile.repository.DetailPr
 import com.example.getaaccontributors.feature.detail.profile.view.DetailProfileViewProxy
 import com.example.getaaccontributors.feature.detail.repos.presenter.DetailReposPresenter
 import com.example.getaaccontributors.feature.detail.repos.repository.DetailReposRepository
-import com.example.getaaccontributors.feature.detail.repos.view.DetailFragment
+import com.example.getaaccontributors.feature.detail.fragment.DetailFragment
 import com.example.getaaccontributors.feature.detail.repos.view.DetailReposViewProxy
 import dagger.Module
 import dagger.Provides
