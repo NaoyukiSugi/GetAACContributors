@@ -1,4 +1,4 @@
-package com.example.getaaccontributors.feature.detail.repository
+package com.example.getaaccontributors.feature.detail.repos.repository
 
 import androidx.paging.PagingSource
 import com.example.getaaccontributors.api.github.GitHubService

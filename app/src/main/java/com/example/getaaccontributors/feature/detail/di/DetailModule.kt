@@ -3,12 +3,12 @@ package com.example.getaaccontributors.feature.detail.di
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.example.getaaccontributors.api.github.GitHubService
-import com.example.getaaccontributors.feature.detail.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
 import com.example.getaaccontributors.feature.detail.di.annotation.DetailLifecycleOwner
-import com.example.getaaccontributors.feature.detail.presenter.DetailPresenter
-import com.example.getaaccontributors.feature.detail.repository.DetailRepository
-import com.example.getaaccontributors.feature.detail.view.DetailFragment
-import com.example.getaaccontributors.feature.detail.view.DetailViewProxy
+import com.example.getaaccontributors.feature.detail.repos.presenter.DetailPresenter
+import com.example.getaaccontributors.feature.detail.repos.repository.DetailRepository
+import com.example.getaaccontributors.feature.detail.repos.view.DetailFragment
+import com.example.getaaccontributors.feature.detail.repos.view.DetailViewProxy
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable

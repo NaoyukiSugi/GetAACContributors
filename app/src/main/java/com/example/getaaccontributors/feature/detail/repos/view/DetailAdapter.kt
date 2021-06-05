@@ -1,4 +1,4 @@
-package com.example.getaaccontributors.feature.detail.view
+package com.example.getaaccontributors.feature.detail.repos.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.getaaccontributors.R
-import com.example.getaaccontributors.feature.detail.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
 import com.example.getaaccontributors.model.RepoList
 
 class DetailAdapter : PagingDataAdapter<RepoList.Repo, DetailViewHolder>(DIFF_CALLBACK) {

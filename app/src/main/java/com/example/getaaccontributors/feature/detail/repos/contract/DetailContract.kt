@@ -1,4 +1,4 @@
-package com.example.getaaccontributors.feature.detail.contract
+package com.example.getaaccontributors.feature.detail.repos.contract
 
 import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData

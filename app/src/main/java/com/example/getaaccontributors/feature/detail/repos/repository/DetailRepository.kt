@@ -1,11 +1,11 @@
-package com.example.getaaccontributors.feature.detail.repository
+package com.example.getaaccontributors.feature.detail.repos.repository
 
 import androidx.annotation.VisibleForTesting
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.getaaccontributors.api.github.GitHubService
-import com.example.getaaccontributors.feature.detail.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
 import com.example.getaaccontributors.model.RepoList
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

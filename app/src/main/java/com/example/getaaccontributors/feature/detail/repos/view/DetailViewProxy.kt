@@ -1,4 +1,4 @@
-package com.example.getaaccontributors.feature.detail.view
+package com.example.getaaccontributors.feature.detail.repos.view
 
 import android.view.View
 import android.widget.Button
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.getaaccontributors.R
-import com.example.getaaccontributors.feature.detail.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
 import com.example.getaaccontributors.model.RepoList
 import javax.inject.Inject
 
