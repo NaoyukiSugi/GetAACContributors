@@ -42,9 +42,7 @@ class DetailModule {
     @FragmentScoped
     fun provideDetailPresenter(
         viewProxy: DetailReposContract.ViewProxy,
-        repository: DetailReposContract.Repository,
-        @DetailLifecycleOwner lifecycleOwner: LifecycleOwner
+        repository: DetailReposContract.Repository
     ): DetailReposContract.Presenter =
-        DetailReposPresenter(viewProxy, repository, lifecycleOwner)
-
+        DetailReposPresenter(viewProxy, repository)
 }
