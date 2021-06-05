@@ -6,35 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".feature.detail.view.DetailFragment">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/error_view"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <LinearLayout
+            android:id="@+id/detail_host_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:orientation="vertical">
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <include layout="@layout/view_detail_profile" />
+
+            <include layout="@layout/view_detail_repos" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <include
         android:id="@+id/error_view"
         layout="@layout/view_home_error"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:visibility="visible" />
-
-    <include
-        android:id="@+id/empty_view"
-        layout="@layout/view_home_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
