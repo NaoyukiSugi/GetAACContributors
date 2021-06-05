@@ -1,4 +1,4 @@
-package com.example.getaaccontributors.feature.detail.repository
+package com.example.getaaccontributors.feature.detail.repos.repository
 
 import androidx.annotation.VisibleForTesting
 import androidx.paging.PagingSource

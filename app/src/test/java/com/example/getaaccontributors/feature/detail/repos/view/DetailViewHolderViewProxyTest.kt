@@ -1,9 +1,9 @@
-package com.example.getaaccontributors.feature.detail.view
+package com.example.getaaccontributors.feature.detail.repos.view
 
 import android.view.View
 import android.widget.TextView
 import com.example.getaaccontributors.R
-import com.example.getaaccontributors.feature.detail.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
 import com.example.getaaccontributors.model.RepoList
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

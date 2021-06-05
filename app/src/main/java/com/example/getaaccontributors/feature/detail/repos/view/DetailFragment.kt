@@ -1,4 +1,4 @@
-package com.example.getaaccontributors.feature.detail.view
+package com.example.getaaccontributors.feature.detail.repos.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.getaaccontributors.R
-import com.example.getaaccontributors.feature.detail.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

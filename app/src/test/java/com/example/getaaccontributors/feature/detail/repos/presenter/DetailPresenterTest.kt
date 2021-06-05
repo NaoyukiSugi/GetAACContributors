@@ -1,11 +1,11 @@
-package com.example.getaaccontributors.feature.detail.presenter
+package com.example.getaaccontributors.feature.detail.repos.presenter
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
-import com.example.getaaccontributors.feature.detail.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
 import com.example.getaaccontributors.model.RepoList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
