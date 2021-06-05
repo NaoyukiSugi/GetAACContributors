@@ -1,10 +1,8 @@
 package com.example.getaaccontributors.feature.detail.di
 
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import com.example.getaaccontributors.api.github.GitHubService
 import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
-import com.example.getaaccontributors.feature.detail.di.annotation.DetailLifecycleOwner
 import com.example.getaaccontributors.feature.detail.profile.contract.DetailProfileContract
 import com.example.getaaccontributors.feature.detail.profile.presenter.DetailProfilePresenter
 import com.example.getaaccontributors.feature.detail.profile.repository.DetailProfileRepository
@@ -27,10 +25,6 @@ class DetailModule {
     @Provides
     fun provideDetailFragment(fragment: Fragment): DetailFragment =
         fragment as DetailFragment
-
-    @Provides
-    @DetailLifecycleOwner
-    fun provideLifecycleOwner(fragment: Fragment): LifecycleOwner = fragment
 
     @Provides
     @Reusable
