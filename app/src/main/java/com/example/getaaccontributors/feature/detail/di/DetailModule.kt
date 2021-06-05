@@ -1,7 +1,10 @@
 package com.example.getaaccontributors.feature.detail.di
 
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
 import com.example.getaaccontributors.api.github.GitHubService
+import com.example.getaaccontributors.feature.detail.di.annotation.DetailProfileLifecycleOwner
+import com.example.getaaccontributors.feature.detail.di.annotation.DetailReposLifecycleOwner
 import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import com.example.getaaccontributors.feature.detail.profile.contract.DetailProfileContract
 import com.example.getaaccontributors.feature.detail.profile.presenter.DetailProfilePresenter
@@ -26,24 +29,32 @@ class DetailModule {
     fun provideDetailFragment(fragment: Fragment): DetailFragment =
         fragment as DetailFragment
 
+    // region DetailRepos
     @Provides
     @Reusable
-    fun provideDetailRepository(api: GitHubService): DetailReposContract.Repository =
+    fun provideDetailReposRepository(api: GitHubService): DetailReposContract.Repository =
         DetailReposRepository(api)
 
     @Provides
     @FragmentScoped
-    fun provideDetailViewProxy(fragment: Fragment): DetailReposContract.ViewProxy =
+    fun provideDetailReposViewProxy(fragment: Fragment): DetailReposContract.ViewProxy =
         DetailReposViewProxy(fragment)
 
     @Provides
-    @FragmentScoped
-    fun provideDetailPresenter(
-        viewProxy: DetailReposContract.ViewProxy,
-        repository: DetailReposContract.Repository
-    ): DetailReposContract.Presenter =
-        DetailReposPresenter(viewProxy, repository)
+    @DetailReposLifecycleOwner
+    fun provideDetailReposLifecycleOwner(fragment: Fragment): LifecycleOwner = fragment
 
+    @Provides
+    @FragmentScoped
+    fun provideDetailReposPresenter(
+        viewProxy: DetailReposContract.ViewProxy,
+        repository: DetailReposContract.Repository,
+        @DetailReposLifecycleOwner lifecycleOwner: LifecycleOwner
+    ): DetailReposContract.Presenter =
+        DetailReposPresenter(viewProxy, repository, lifecycleOwner)
+    // endregion
+
+    // region DetailProfile
     @Provides
     @Reusable
     fun provideDetailProfileRepository(service: GitHubService): DetailProfileContract.Repository =
@@ -55,10 +66,16 @@ class DetailModule {
         DetailProfileViewProxy(fragment)
 
     @Provides
+    @DetailProfileLifecycleOwner
+    fun provideDetailProfileLifecycleOwner(fragment: Fragment): LifecycleOwner = fragment
+
+    @Provides
     @FragmentScoped
     fun provideDetailProfilePresenter(
         viewProxy: DetailProfileContract.ViewProxy,
-        repository: DetailProfileContract.Repository
+        repository: DetailProfileContract.Repository,
+        @DetailProfileLifecycleOwner lifecycleOwner: LifecycleOwner
     ): DetailProfileContract.Presenter =
-        DetailProfilePresenter(viewProxy, repository)
+        DetailProfilePresenter(viewProxy, repository, lifecycleOwner)
+    // endregion
 }

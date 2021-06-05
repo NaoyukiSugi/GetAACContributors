@@ -42,6 +42,6 @@ interface DetailReposContract {
     }
 
     interface Presenter {
-        suspend fun getRepos(userName: String)
+        fun getRepos(userName: String)
     }
 }

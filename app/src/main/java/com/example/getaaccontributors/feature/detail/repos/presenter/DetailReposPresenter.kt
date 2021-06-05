@@ -1,31 +1,51 @@
 package com.example.getaaccontributors.feature.detail.repos.presenter
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.OnLifecycleEvent
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DetailReposPresenter @Inject constructor(
     private val viewProxy: DetailReposContract.ViewProxy,
-    private val repository: DetailReposContract.Repository
+    private val repository: DetailReposContract.Repository,
+    lifecycleOwner: LifecycleOwner
 ) : DetailReposContract.Presenter,
     DetailReposContract.RefreshListener,
     DetailReposContract.LoadStateListener,
+    LifecycleObserver,
     CoroutineScope by MainScope() {
 
-    override suspend fun getRepos(userName: String) {
+    init {
+        lifecycleOwner.lifecycle.addObserver(this)
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun onLifecycleEventOnStart() {
         viewProxy.run {
             initAdapter()
             initRecyclerView()
             setOnRefreshListener(this@DetailReposPresenter)
             addLoadStateListener(this@DetailReposPresenter)
         }
+    }
 
-        repository.getRepos(userName).collect {
-            viewProxy.submitData(it)
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun onLifecycleEventOnDestroy() = cancel()
+
+    override fun getRepos(userName: String) {
+        launch {
+            repository.getRepos(userName).collect {
+                viewProxy.submitData(it)
+            }
         }
     }
 
