@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/profile_icon_size"
+        android:layout_height="@dimen/profile_icon_size"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/profile_margin"
+        android:layout_marginEnd="@dimen/profile_margin"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/real_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@id/icon"
+        tools:text="user_name" />
+
+    <TextView
+        android:id="@+id/real_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/icon"
+        app:layout_constraintEnd_toEndOf="@id/user_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/user_name"
+        app:layout_constraintTop_toBottomOf="@id/user_name"
+        tools:text="real_name" />
+
+    <ImageView
+        android:id="@+id/place_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/profile_margin"
+        android:contentDescription="@null"
+        android:src="@drawable/place_icon"
+        app:layout_constraintStart_toStartOf="@id/work_icon"
+        app:layout_constraintTop_toBottomOf="@id/work_icon" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/place_icon"
+        app:layout_constraintEnd_toEndOf="@id/real_name"
+        app:layout_constraintStart_toStartOf="@id/company"
+        app:layout_constraintTop_toTopOf="@id/place_icon"
+        tools:text="location" />
+
+    <ImageView
+        android:id="@+id/work_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/profile_margin"
+        android:contentDescription="@null"
+        android:src="@drawable/work_icon"
+        app:layout_constraintStart_toStartOf="@id/icon"
+        app:layout_constraintTop_toBottomOf="@id/icon" />
+
+    <TextView
+        android:id="@+id/company"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/profile_margin"
+        app:layout_constraintBottom_toBottomOf="@id/work_icon"
+        app:layout_constraintEnd_toEndOf="@id/real_name"
+        app:layout_constraintStart_toEndOf="@id/work_icon"
+        app:layout_constraintTop_toTopOf="@id/work_icon"
+        tools:text="company" />
+
+    <ImageView
+        android:id="@+id/link_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/profile_margin"
+        android:contentDescription="@null"
+        android:src="@drawable/link_icon"
+        app:layout_constraintStart_toStartOf="@id/place_icon"
+        app:layout_constraintTop_toBottomOf="@id/place_icon" />
+
+    <TextView
+        android:id="@+id/blog"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/link_icon"
+        app:layout_constraintEnd_toEndOf="@id/location"
+        app:layout_constraintStart_toStartOf="@id/location"
+        app:layout_constraintTop_toTopOf="@id/link_icon"
+        tools:text="blog" />
+
+    <ImageView
+        android:id="@+id/twitter_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/profile_margin"
+        android:layout_marginBottom="@dimen/profile_margin"
+        android:contentDescription="@null"
+        android:src="@drawable/twitter_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/link_icon"
+        app:layout_constraintTop_toBottomOf="@id/link_icon" />
+
+    <TextView
+        android:id="@+id/twitter_user_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/twitter_icon"
+        app:layout_constraintEnd_toEndOf="@id/blog"
+        app:layout_constraintStart_toStartOf="@id/blog"
+        app:layout_constraintTop_toTopOf="@id/twitter_icon"
+        tools:text="twitter_user_name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
