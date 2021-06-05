@@ -29,14 +29,12 @@ internal class DetailReposViewProxyTest {
     private lateinit var viewProxy: DetailViewReposProxy
     private val recyclerView: RecyclerView = mock()
     private val errorView: View = mock()
-    private val emptyView: View = mock()
     private val progressBar: ContentLoadingProgressBar = mock()
     private val refreshButton: Button = mock()
     private val swipeRefreshLayout: SwipeRefreshLayout = mock()
     private val view: View = mock {
         on { findViewById<RecyclerView>(R.id.recycler_view) } doReturn recyclerView
         on { findViewById<View>(R.id.error_view) } doReturn errorView
-        on { findViewById<View>(R.id.empty_view) } doReturn emptyView
         on { findViewById<ContentLoadingProgressBar>(R.id.progress_bar) } doReturn progressBar
         on { findViewById<Button>(R.id.refresh_button) } doReturn refreshButton
         on { findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_layout) } doReturn swipeRefreshLayout
@@ -109,20 +107,6 @@ internal class DetailReposViewProxyTest {
         viewProxy.hideErrorView()
 
         verify(errorView).isVisible = false
-    }
-
-    @Test
-    fun `showEmptyView should show emptyView`() {
-        viewProxy.showEmptyView()
-
-        verify(emptyView).isVisible = true
-    }
-
-    @Test
-    fun `hideEmptyView should hide emptyView`() {
-        viewProxy.hideEmptyView()
-
-        verify(emptyView).isVisible = false
     }
 
     @Test
