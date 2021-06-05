@@ -25,11 +25,11 @@ class DetailProfilePresenter @Inject constructor(
                                 showProfileView()
                                 loadIconImage(avatarUrl)
                                 setUserName(login)
-                                setRealName(name)
-                                setLocation(location)
-                                setCompany(company)
-                                setBlog(blog)
-                                setTwitterUserName(twitterUsername)
+                                setRealName(name?: DEFAULT_PARAM)
+                                setLocation(location ?: DEFAULT_PARAM)
+                                setCompany(company ?: DEFAULT_PARAM)
+                                setBlog(blog ?: DEFAULT_PARAM)
+                                setTwitterUserName(twitterUsername ?: DEFAULT_PARAM)
                             }
                         }
                     }
@@ -50,5 +50,9 @@ class DetailProfilePresenter @Inject constructor(
                 }
             }
         }
+    }
+
+    companion object {
+        private const val DEFAULT_PARAM = ""
     }
 }
