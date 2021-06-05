@@ -17,7 +17,7 @@ class DetailProfileViewProxy @VisibleForTesting internal constructor(
     constructor(fragment: Fragment) : this(fragment, Glide.with(fragment))
 
     private val userIconIV: ImageView?
-        get() = fragment.view?.findViewById(R.id.icon)
+        get() = fragment.view?.findViewById(R.id.user_icon)
 
     private val userNameTv: TextView?
         get() = fragment.view?.findViewById(R.id.user_name)
