@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.getaaccontributors.R
-import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import com.example.getaaccontributors.model.RepoList
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
@@ -24,9 +24,9 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-internal class DetailViewProxyTest {
+internal class DetailReposViewProxyTest {
 
-    private lateinit var viewProxy: DetailViewProxy
+    private lateinit var viewProxy: DetailViewReposProxy
     private val recyclerView: RecyclerView = mock()
     private val errorView: View = mock()
     private val emptyView: View = mock()
@@ -44,18 +44,18 @@ internal class DetailViewProxyTest {
     private val fragment: Fragment = mock {
         on { view } doReturn view
     }
-    private val adapter: DetailAdapter = mock()
+    private val adapter: DetailReposAdapter = mock()
 
     @BeforeEach
     fun setUp() {
-        viewProxy = spy(DetailViewProxy(fragment))
+        viewProxy = spy(DetailViewReposProxy(fragment))
         doReturn(adapter).whenever(viewProxy).createDetailAdapter()
     }
 
     // region initAdapter
     @Test
     fun `initAdapter should set adapter into recyclerview`() {
-        val repoClickListener: DetailContract.RepoClickListener = mock()
+        val repoClickListener: DetailReposContract.RepoClickListener = mock()
 
         viewProxy.initAdapter(repoClickListener)
 
@@ -64,7 +64,7 @@ internal class DetailViewProxyTest {
 
     @Test
     fun `initAdapter should set listener into adapter`() {
-        val listener: DetailContract.RepoClickListener = mock()
+        val listener: DetailReposContract.RepoClickListener = mock()
         viewProxy.detailAdapter = adapter
 
         viewProxy.initAdapter(listener)
@@ -153,7 +153,7 @@ internal class DetailViewProxyTest {
 
     @Test
     fun `setOnRefreshListener should set listener into refreshButton`() {
-        val refreshListener: DetailContract.RefreshListener = mock()
+        val refreshListener: DetailReposContract.RefreshListener = mock()
 
         viewProxy.setOnRefreshListener(refreshListener)
 
@@ -173,7 +173,7 @@ internal class DetailViewProxyTest {
 
     @Test
     fun `addLoadStateListener should set listener into homeAdapter`() {
-        val loadStateListener: DetailContract.LoadStateListener = mock()
+        val loadStateListener: DetailReposContract.LoadStateListener = mock()
         viewProxy.detailAdapter = adapter
 
         viewProxy.addLoadStateListener(loadStateListener)

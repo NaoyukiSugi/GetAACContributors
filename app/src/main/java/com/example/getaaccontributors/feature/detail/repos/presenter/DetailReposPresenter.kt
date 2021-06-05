@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
-import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import com.example.getaaccontributors.model.RepoList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -15,14 +15,14 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DetailPresenter @Inject constructor(
-    private val viewProxy: DetailContract.ViewProxy,
-    private val repository: DetailContract.Repository,
+class DetailReposPresenter @Inject constructor(
+    private val viewProxy: DetailReposContract.ViewProxy,
+    private val repository: DetailReposContract.Repository,
     lifecycleOwner: LifecycleOwner
-) : DetailContract.Presenter,
-    DetailContract.RepoClickListener,
-    DetailContract.RefreshListener,
-    DetailContract.LoadStateListener,
+) : DetailReposContract.Presenter,
+    DetailReposContract.RepoClickListener,
+    DetailReposContract.RefreshListener,
+    DetailReposContract.LoadStateListener,
     LifecycleObserver,
     CoroutineScope by MainScope() {
 
@@ -33,10 +33,10 @@ class DetailPresenter @Inject constructor(
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onLifecycleEventOnStart() {
         viewProxy.run {
-            initAdapter(this@DetailPresenter)
+            initAdapter(this@DetailReposPresenter)
             initRecyclerView()
-            setOnRefreshListener(this@DetailPresenter)
-            addLoadStateListener(this@DetailPresenter)
+            setOnRefreshListener(this@DetailReposPresenter)
+            addLoadStateListener(this@DetailReposPresenter)
         }
     }
 

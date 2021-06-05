@@ -3,7 +3,7 @@ package com.example.getaaccontributors.feature.detail.repos.view
 import android.view.View
 import android.widget.TextView
 import com.example.getaaccontributors.R
-import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import com.example.getaaccontributors.model.RepoList
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -12,9 +12,9 @@ import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 
-class DetailViewHolderViewProxyTest {
+class DetailReposViewHolderViewProxyTest {
 
-    private lateinit var viewProxy: DetailViewHolder.ViewProxy
+    private lateinit var viewProxy: DetailReposViewHolder.ViewProxy
     private val repoNameTv: TextView = mock()
     private val languageTv: TextView = mock()
     private val updatedDateTv: TextView = mock()
@@ -26,7 +26,7 @@ class DetailViewHolderViewProxyTest {
 
     @BeforeEach
     fun setUp() {
-        viewProxy = DetailViewHolder.ViewProxy(view)
+        viewProxy = DetailReposViewHolder.ViewProxy(view)
     }
 
     @Test
@@ -59,7 +59,7 @@ class DetailViewHolderViewProxyTest {
     @Test
     fun `setOnRepoClickListener should set listener into view`() {
         val repo: RepoList.Repo = mock()
-        val listener: DetailContract.RepoClickListener = mock()
+        val listener: DetailReposContract.RepoClickListener = mock()
 
         viewProxy.setOnRepoClickListener(repo, listener)
 

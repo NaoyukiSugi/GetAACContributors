@@ -5,7 +5,7 @@ import androidx.paging.PagingData
 import com.example.getaaccontributors.model.RepoList
 import kotlinx.coroutines.flow.Flow
 
-interface DetailContract {
+interface DetailReposContract {
 
     interface Repository {
         fun getRepos(repoId: String): Flow<PagingData<RepoList.Repo>>

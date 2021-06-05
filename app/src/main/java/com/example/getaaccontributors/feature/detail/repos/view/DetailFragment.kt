@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.getaaccontributors.R
-import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class DetailFragment : Fragment() {
 
     @Inject
-    lateinit var presenter: DetailContract.Presenter
+    lateinit var presenter: DetailReposContract.Presenter
 
     private val args: DetailFragmentArgs by navArgs()
 
