@@ -5,6 +5,10 @@ import androidx.lifecycle.LifecycleOwner
 import com.example.getaaccontributors.api.github.GitHubService
 import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import com.example.getaaccontributors.feature.detail.di.annotation.DetailLifecycleOwner
+import com.example.getaaccontributors.feature.detail.profile.contract.DetailProfileContract
+import com.example.getaaccontributors.feature.detail.profile.presenter.DetailProfilePresenter
+import com.example.getaaccontributors.feature.detail.profile.repository.DetailProfileRepository
+import com.example.getaaccontributors.feature.detail.profile.view.DetailProfileViewProxy
 import com.example.getaaccontributors.feature.detail.repos.presenter.DetailReposPresenter
 import com.example.getaaccontributors.feature.detail.repos.repository.DetailReposRepository
 import com.example.getaaccontributors.feature.detail.repos.view.DetailFragment
@@ -45,4 +49,22 @@ class DetailModule {
         repository: DetailReposContract.Repository
     ): DetailReposContract.Presenter =
         DetailReposPresenter(viewProxy, repository)
+
+    @Provides
+    @Reusable
+    fun provideDetailProfileRepository(service: GitHubService): DetailProfileContract.Repository =
+        DetailProfileRepository(service)
+
+    @Provides
+    @FragmentScoped
+    fun provideDetailProfileViewProxy(fragment: Fragment): DetailProfileContract.ViewProxy =
+        DetailProfileViewProxy(fragment)
+
+    @Provides
+    @FragmentScoped
+    fun provideDetailProfilePresenter(
+        viewProxy: DetailProfileContract.ViewProxy,
+        repository: DetailProfileContract.Repository
+    ): DetailProfileContract.Presenter =
+        DetailProfilePresenter(viewProxy, repository)
 }
