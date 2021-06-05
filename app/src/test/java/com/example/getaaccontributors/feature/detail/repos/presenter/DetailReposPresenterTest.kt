@@ -5,7 +5,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
-import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import com.example.getaaccontributors.model.RepoList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -25,11 +25,11 @@ import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import kotlin.test.assertFalse
 
-internal class DetailPresenterTest {
+internal class DetailReposPresenterTest {
 
-    private lateinit var presenter: DetailPresenter
-    private val viewProxy: DetailContract.ViewProxy = mock()
-    private val repository: DetailContract.Repository = mock()
+    private lateinit var presenter: DetailReposPresenter
+    private val viewProxy: DetailReposContract.ViewProxy = mock()
+    private val repository: DetailReposContract.Repository = mock()
     private val lifecycle: Lifecycle = mock()
     private val lifecycleOwner: LifecycleOwner = mock {
         on { lifecycle } doReturn (lifecycle)
@@ -38,7 +38,7 @@ internal class DetailPresenterTest {
     @BeforeEach
     fun setUp() {
         Dispatchers.setMain(TestCoroutineDispatcher())
-        presenter = spy(DetailPresenter(viewProxy, repository, lifecycleOwner))
+        presenter = spy(DetailReposPresenter(viewProxy, repository, lifecycleOwner))
     }
 
     @AfterEach

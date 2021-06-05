@@ -11,14 +11,14 @@ import org.mockito.kotlin.spy
 import org.mockito.kotlin.whenever
 import kotlin.test.assertEquals
 
-internal class DetailRepositoryTest {
+internal class DetailReposRepositoryTest {
 
-    private lateinit var repository: DetailRepository
+    private lateinit var repository: DetailReposRepository
     private val service: GitHubService = mock()
 
     @BeforeEach
     fun setUp() {
-        repository = spy(DetailRepository(service))
+        repository = spy(DetailReposRepository(service))
     }
 
     @Test

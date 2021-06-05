@@ -1,7 +1,7 @@
 package com.example.getaaccontributors.feature.detail.repos.view
 
 import android.view.View
-import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import com.example.getaaccontributors.model.RepoList
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -10,17 +10,17 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-internal class DetailViewHolderTest {
+internal class DetailReposViewHolderTest {
 
-    private lateinit var viewHolder: DetailViewHolder
+    private lateinit var viewHolder: DetailReposViewHolder
     private val view: View = mock()
-    private val viewProxy: DetailContract.ViewHolderViewProxy = mock()
+    private val viewProxy: DetailReposContract.ViewHolderViewProxy = mock()
     private val repo: RepoList.Repo = mock()
-    private val listener: DetailContract.RepoClickListener = mock()
+    private val listener: DetailReposContract.RepoClickListener = mock()
 
     @BeforeEach
     fun setUp() {
-        viewHolder = DetailViewHolder(view, viewProxy)
+        viewHolder = DetailReposViewHolder(view, viewProxy)
     }
 
     @Test

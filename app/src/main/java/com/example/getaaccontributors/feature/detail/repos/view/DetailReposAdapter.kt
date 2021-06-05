@@ -6,26 +6,26 @@ import androidx.annotation.VisibleForTesting
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.getaaccontributors.R
-import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import com.example.getaaccontributors.model.RepoList
 
-class DetailAdapter : PagingDataAdapter<RepoList.Repo, DetailViewHolder>(DIFF_CALLBACK) {
+class DetailReposAdapter : PagingDataAdapter<RepoList.Repo, DetailReposViewHolder>(DIFF_CALLBACK) {
 
-    var repoClickListener: DetailContract.RepoClickListener? = null
+    var repoClickListener: DetailReposContract.RepoClickListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailReposViewHolder {
         return createDetailViewHolder(parent)
     }
 
-    override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DetailReposViewHolder, position: Int) {
         getRepo(position)?.run { holder.bind(this, repoClickListener) }
     }
 
     @VisibleForTesting
-    internal fun createDetailViewHolder(parent: ViewGroup): DetailViewHolder {
+    internal fun createDetailViewHolder(parent: ViewGroup): DetailReposViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.view_repo, parent, false)
-        return DetailViewHolder(view)
+        return DetailReposViewHolder(view)
     }
 
     @VisibleForTesting

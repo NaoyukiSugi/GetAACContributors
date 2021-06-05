@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.getaaccontributors.R
-import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import com.example.getaaccontributors.model.RepoList
 import javax.inject.Inject
 
-class DetailViewProxy @Inject constructor(
+class DetailViewReposProxy @Inject constructor(
     private val fragment: Fragment
-) : DetailContract.ViewProxy {
+) : DetailReposContract.ViewProxy {
 
     @VisibleForTesting
-    internal lateinit var detailAdapter: DetailAdapter
+    internal lateinit var detailAdapter: DetailReposAdapter
 
     private val recyclerView: RecyclerView?
         get() = fragment.view?.findViewById(R.id.recycler_view)
@@ -42,7 +42,7 @@ class DetailViewProxy @Inject constructor(
         get() = fragment.view?.findViewById(R.id.progress_bar)
 
 
-    override fun initAdapter(repoClickListener: DetailContract.RepoClickListener) {
+    override fun initAdapter(repoClickListener: DetailReposContract.RepoClickListener) {
         createDetailAdapter().run {
             detailAdapter = this
             recyclerView?.adapter = this
@@ -90,7 +90,7 @@ class DetailViewProxy @Inject constructor(
         progressBar?.isVisible = false
     }
 
-    override fun setOnRefreshListener(listener: DetailContract.RefreshListener) {
+    override fun setOnRefreshListener(listener: DetailReposContract.RefreshListener) {
         refreshButton?.setOnClickListener { listener.onRefresh() }
         swipeRefreshLayout?.run {
             setOnRefreshListener {
@@ -100,7 +100,7 @@ class DetailViewProxy @Inject constructor(
         }
     }
 
-    override fun addLoadStateListener(listener: DetailContract.LoadStateListener) {
+    override fun addLoadStateListener(listener: DetailReposContract.LoadStateListener) {
         detailAdapter.addLoadStateListener { listener.onLoadState(it) }
     }
 
@@ -113,7 +113,7 @@ class DetailViewProxy @Inject constructor(
     }
 
     @VisibleForTesting
-    internal fun createDetailAdapter() = DetailAdapter()
+    internal fun createDetailAdapter() = DetailReposAdapter()
 
     @VisibleForTesting
     internal fun createItemDecoration() =

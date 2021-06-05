@@ -4,15 +4,15 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.getaaccontributors.R
-import com.example.getaaccontributors.feature.detail.repos.contract.DetailContract
+import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
 import com.example.getaaccontributors.model.RepoList
 
-class DetailViewHolder(
+class DetailReposViewHolder(
     private val view: View,
-    private val viewProxy: DetailContract.ViewHolderViewProxy = ViewProxy(view)
+    private val viewProxy: DetailReposContract.ViewHolderViewProxy = ViewProxy(view)
 ) : RecyclerView.ViewHolder(view) {
 
-    fun bind(repo: RepoList.Repo, listener: DetailContract.RepoClickListener?) {
+    fun bind(repo: RepoList.Repo, listener: DetailReposContract.RepoClickListener?) {
         viewProxy.run {
             setRepoName(repo.name)
             setLanguage(repo.language ?: DEFAULT_LANGUAGE_TEXT)
@@ -21,7 +21,7 @@ class DetailViewHolder(
         }
     }
 
-    internal class ViewProxy(private val view: View) : DetailContract.ViewHolderViewProxy {
+    internal class ViewProxy(private val view: View) : DetailReposContract.ViewHolderViewProxy {
 
         private val repoNameTv: TextView
             get() = view.findViewById(R.id.repo_name)
@@ -46,7 +46,7 @@ class DetailViewHolder(
 
         override fun setOnRepoClickListener(
             repo: RepoList.Repo,
-            listener: DetailContract.RepoClickListener?
+            listener: DetailReposContract.RepoClickListener?
         ) {
             view.setOnClickListener { listener?.onRepoClick(repo) }
         }
