@@ -73,14 +73,6 @@ class DetailViewReposProxy @Inject constructor(
         errorView?.isVisible = false
     }
 
-    override fun showEmptyView() {
-        emptyView?.isVisible = true
-    }
-
-    override fun hideEmptyView() {
-        emptyView?.isVisible = false
-    }
-
     override fun showLoadingView() {
         progressBar?.isVisible = true
     }

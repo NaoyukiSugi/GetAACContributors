@@ -29,6 +29,6 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter.getRepos(args.userName)
+//        presenter.getRepos(args.userName)
     }
 }

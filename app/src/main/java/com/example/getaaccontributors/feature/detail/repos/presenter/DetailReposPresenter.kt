@@ -7,7 +7,6 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposContract
-import com.example.getaaccontributors.model.RepoList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -43,7 +42,7 @@ class DetailReposPresenter @Inject constructor(
     fun onLifecycleEventOnDestroy() = cancel()
 
 
-    override fun getRepos(userName: String) {
+    override suspend fun getRepos(userName: String) {
         launch {
             repository.getRepos(userName).collect {
                 viewProxy.submitData(it)
@@ -60,7 +59,6 @@ class DetailReposPresenter @Inject constructor(
             is LoadState.NotLoading -> {
                 viewProxy.run {
                     showRecyclerView()
-                    hideEmptyView()
                     hideErrorView()
                     hideLoadingView()
                 }
@@ -69,7 +67,6 @@ class DetailReposPresenter @Inject constructor(
                 viewProxy.run {
                     showLoadingView()
                     hideRecyclerView()
-                    hideEmptyView()
                     hideErrorView()
                 }
             }
@@ -78,7 +75,6 @@ class DetailReposPresenter @Inject constructor(
                     showErrorView()
                     hideLoadingView()
                     hideRecyclerView()
-                    hideEmptyView()
                     showErrorMessage(refresh.error)
                 }
             }

@@ -116,7 +116,6 @@ internal class DetailReposPresenterTest {
         presenter.onLoadState(loadState)
 
         verify(viewProxy).showRecyclerView()
-        verify(viewProxy).hideEmptyView()
         verify(viewProxy).hideErrorView()
         verify(viewProxy).hideLoadingView()
     }
@@ -131,7 +130,6 @@ internal class DetailReposPresenterTest {
 
         verify(viewProxy).showLoadingView()
         verify(viewProxy).hideRecyclerView()
-        verify(viewProxy).hideEmptyView()
         verify(viewProxy).hideErrorView()
     }
 
@@ -147,7 +145,6 @@ internal class DetailReposPresenterTest {
         verify(viewProxy).showErrorView()
         verify(viewProxy).hideLoadingView()
         verify(viewProxy).hideRecyclerView()
-        verify(viewProxy).hideEmptyView()
         verify(viewProxy).showErrorMessage(exception)
     }
     // endregion

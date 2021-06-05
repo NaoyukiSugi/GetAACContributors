@@ -25,8 +25,6 @@ interface DetailReposContract {
         fun hideRecyclerView()
         fun showErrorView()
         fun hideErrorView()
-        fun showEmptyView()
-        fun hideEmptyView()
         fun showLoadingView()
         fun hideLoadingView()
         fun setOnRefreshListener(listener: RefreshListener)
@@ -44,6 +42,6 @@ interface DetailReposContract {
     }
 
     interface Presenter {
-        fun getRepos(userName: String)
+        suspend fun getRepos(userName: String)
     }
 }
