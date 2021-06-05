@@ -12,7 +12,7 @@ import com.example.getaaccontributors.feature.detail.profile.view.DetailProfileV
 import com.example.getaaccontributors.feature.detail.repos.presenter.DetailReposPresenter
 import com.example.getaaccontributors.feature.detail.repos.repository.DetailReposRepository
 import com.example.getaaccontributors.feature.detail.repos.view.DetailFragment
-import com.example.getaaccontributors.feature.detail.repos.view.DetailViewReposProxy
+import com.example.getaaccontributors.feature.detail.repos.view.DetailReposViewProxy
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -40,7 +40,7 @@ class DetailModule {
     @Provides
     @FragmentScoped
     fun provideDetailViewProxy(fragment: Fragment): DetailReposContract.ViewProxy =
-        DetailViewReposProxy(fragment)
+        DetailReposViewProxy(fragment)
 
     @Provides
     @FragmentScoped

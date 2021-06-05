@@ -16,7 +16,7 @@ import com.example.getaaccontributors.feature.detail.repos.contract.DetailReposC
 import com.example.getaaccontributors.model.RepoList
 import javax.inject.Inject
 
-class DetailViewReposProxy @Inject constructor(
+class DetailReposViewProxy @Inject constructor(
     private val fragment: Fragment
 ) : DetailReposContract.ViewProxy {
 
